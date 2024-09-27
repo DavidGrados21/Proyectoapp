@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    android:padding="50dp"
+    tools:context=".PantallaPrincipal">
+
+    <ImageView
+        android:id="@+id/blanco"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Imagen de fondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:srcCompat="@drawable/blanco" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/blanco"
+        app:layout_constraintEnd_toEndOf="@id/blanco"
+        app:layout_constraintStart_toStartOf="@id/blanco"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textoprincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/aristotelica"
+        android:text="Bienvenido"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@id/blanco"
+        app:layout_constraintEnd_toEndOf="@id/blanco"
+        app:layout_constraintStart_toStartOf="@id/blanco"
+        app:layout_constraintTop_toTopOf="@id/logo" />
+
+    <Button
+        android:id="@+id/btnDocente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aristotelica"
+        android:backgroundTint="@color/custom_blue"
+        android:text="Docente"
+        android:textSize="27dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="@id/textoprincipal"
+        app:layout_constraintEnd_toEndOf="@id/textoprincipal"
+        app:layout_constraintTop_toBottomOf="@id/textoprincipal" />
+
+    <Button
+        android:id="@+id/btnEstudiante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estudiante"
+        android:textSize="20dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/aristotelica"
+        android:backgroundTint="@color/custom_yellow"
+        app:layout_constraintStart_toStartOf="@id/textoprincipal"
+        app:layout_constraintEnd_toEndOf="@id/textoprincipal"
+        app:layout_constraintTop_toBottomOf="@id/textoprincipal" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

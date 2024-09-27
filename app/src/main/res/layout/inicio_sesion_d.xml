@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    tools:context=".InicioSesionD">
+
+    <ImageView
+        android:id="@+id/upn"
+        android:layout_margin="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textprincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="180dp"
+        android:layout_marginStart="40dp"
+        android:gravity="center"
+        android:fontFamily="@font/aristotelica"
+        android:text="Bienvenido Docente"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
+
+    <EditText
+        android:id="@+id/TxtCorreo"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:hint="  Hola@sitioincreible.com"
+        android:fontFamily="@font/aristotelica"
+        android:ems="14"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/borde"
+        app:layout_constraintStart_toStartOf="@id/textprincipal"
+        app:layout_constraintEnd_toEndOf="@id/textprincipal"
+        app:layout_constraintTop_toBottomOf="@id/textprincipal" />
+
+    <EditText
+        android:id="@+id/TxtPass"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:hint="  Contraseña"
+        android:fontFamily="@font/aristotelica"
+        android:ems="14"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/borde"
+        app:layout_constraintStart_toStartOf="@+id/TxtCorreo"
+        app:layout_constraintEnd_toEndOf="@+id/TxtCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/TxtCorreo" />
+
+    <TextView
+        android:id="@+id/txtOlvidastes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Olvidaste tu contraseña?"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:fontFamily="@font/aristotelica"
+        app:layout_constraintStart_toStartOf="@+id/TxtPass"
+        app:layout_constraintEnd_toEndOf="@+id/TxtPass"
+        app:layout_constraintTop_toBottomOf="@+id/TxtPass"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Sesion"
+        android:layout_marginTop="90dp"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="@+id/TxtPass"
+        app:layout_constraintEnd_toEndOf="@+id/TxtPass"
+        app:layout_constraintTop_toBottomOf="@+id/TxtPass"/>
+
+    <TextView
+        android:id="@+id/txtRegistrarte"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="¿Aún no tienes una cuenta? Únete aquí"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/aristotelica"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
