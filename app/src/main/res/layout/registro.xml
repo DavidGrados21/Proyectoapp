@@ -70,7 +70,7 @@
     <EditText
         android:id="@+id/txtNombre2"
         android:layout_width="360dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/border2"
         android:ems="10"
@@ -118,7 +118,7 @@
     <EditText
         android:id="@+id/TxtPass2"
         android:layout_width="360dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/border2"
         android:ems="10"
@@ -142,7 +142,7 @@
     <EditText
         android:id="@+id/TxtFecha2"
         android:layout_width="360dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/border2"
         android:clickable="true"
