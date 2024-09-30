@@ -20,5 +20,9 @@ class PantallaPrincipal : AppCompatActivity() {
             val explicitIntent = Intent(this, InicioSesionD::class.java)
             startActivity(explicitIntent)
         }
+        btnEstudiante.setOnClickListener {
+            val explicitIntent = Intent(this, InicioSesionE::class.java)
+            startActivity(explicitIntent)
+        }
     }
 }
