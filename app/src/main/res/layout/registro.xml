@@ -12,6 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"
+        android:contentDescription="logo de la app"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -72,11 +73,12 @@
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
+        android:autofillHints="emailAddress"
         android:background="@drawable/border2"
         android:ems="10"
         android:inputType="text"
-        android:text="Lucero RIsco"
         android:paddingStart="12dp"
+        android:hint="Lucero RIsco"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtNombre" />
 
@@ -88,7 +90,7 @@
         android:fontFamily="@font/dmsans"
         android:gravity="center"
         android:text=" C O R R E O"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtNombre2" />
 
@@ -96,12 +98,12 @@
         android:id="@+id/txtCorreo2"
         android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/border2"
         android:ems="10"
         android:inputType="text"
-        android:text="hola@unsitiogenial.es"
         android:paddingStart="12dp"
+        android:hint="hola@unsitiogenial.es"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtCorreo" />
 
@@ -125,7 +127,7 @@
         android:background="@drawable/border2"
         android:ems="10"
         android:inputType="text"
-        android:text="******"
+        android:hint="******"
         android:paddingStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtPass" />
@@ -138,7 +140,7 @@
         android:fontFamily="@font/dmsans"
         android:gravity="center"
         android:text=" F E C H A  D E  N A C I M I E N T O"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/TxtPass2" />
 
@@ -146,14 +148,14 @@
         android:id="@+id/TxtFecha2"
         android:layout_width="320dp"
         android:layout_height="48dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/border2"
         android:clickable="true"
         android:ems="10"
         android:focusable="false"
         android:hint="Selecciona una fecha"
-        android:paddingStart="12dp"
         android:inputType="text"
+        android:paddingStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtFecha" />
 
@@ -163,7 +165,7 @@
         android:layout_height="60dp"
         android:backgroundTint="@color/black"
         android:text="Ingresar"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TxtFecha2" />

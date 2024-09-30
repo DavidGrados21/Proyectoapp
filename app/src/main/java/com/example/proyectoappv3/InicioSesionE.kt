@@ -11,9 +11,15 @@ class InicioSesionE : AppCompatActivity() {
         setContentView(R.layout.inicio_sesion_e)
 
         val registrarte = findViewById<TextView>(R.id.txtRegistrarte)
+        val olvidastes = findViewById<TextView>(R.id.txtOlvidastes)
 
         registrarte.setOnClickListener {
             val explicitIntent = Intent(this, RegistroE::class.java)
+            startActivity(explicitIntent)
+        }
+
+        olvidastes.setOnClickListener {
+            val explicitIntent = Intent(this, RecuperarClave::class.java)
             startActivity(explicitIntent)
         }
     }
