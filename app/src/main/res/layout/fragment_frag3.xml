@@ -7,11 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context="Frag3">
+    tools:context=".Frag3">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="452dp"
+        android:layout_width="465dp"
         android:layout_height="174dp"
         android:alpha="0.5"
         android:background="@drawable/borde"
