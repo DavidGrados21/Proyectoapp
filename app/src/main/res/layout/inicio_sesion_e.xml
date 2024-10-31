@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
 
     android:background="@drawable/fondo2"
-    tools:context=".InicioSesionE">
+    tools:context=".AlummnoP.InicioSesionE">
 
     <ImageView
         android:id="@+id/upn"

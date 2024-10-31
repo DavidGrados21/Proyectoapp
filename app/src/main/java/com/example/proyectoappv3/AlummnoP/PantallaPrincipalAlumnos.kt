@@ -1,7 +1,8 @@
-package com.example.proyectoappv3
+package com.example.proyectoappv3.AlummnoP
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectoappv3.R
 
 class PantallaPrincipalAlumnos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

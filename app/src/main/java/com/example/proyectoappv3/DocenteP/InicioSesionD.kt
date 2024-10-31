@@ -1,31 +1,27 @@
-package com.example.proyectoappv3
+package com.example.proyectoappv3.DocenteP
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectoappv3.R
+import com.example.proyectoappv3.RecuperarClave
 
-class InicioSesionE : AppCompatActivity() {
+class InicioSesionD : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.inicio_sesion_e)
+        setContentView(R.layout.inicio_sesion_d)
 
-        val registrarte = findViewById<TextView>(R.id.txtRegistrarte)
+        val regsitro = findViewById<TextView>(R.id.txtRegistrarte)
         val olvidastes = findViewById<TextView>(R.id.txtOlvidastes)
-        val btnLogin = findViewById<TextView>(R.id.btnLogin)
 
-        registrarte.setOnClickListener {
-            val explicitIntent = Intent(this, RegistroE::class.java)
+        regsitro.setOnClickListener {
+            val explicitIntent = Intent(this, Registro::class.java)
             startActivity(explicitIntent)
         }
 
         olvidastes.setOnClickListener {
             val explicitIntent = Intent(this, RecuperarClave::class.java)
-            startActivity(explicitIntent)
-        }
-
-        btnLogin.setOnClickListener {
-            val explicitIntent = Intent(this, navigation::class.java)
             startActivity(explicitIntent)
         }
 

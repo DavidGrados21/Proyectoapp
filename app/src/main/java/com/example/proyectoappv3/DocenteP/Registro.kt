@@ -1,4 +1,4 @@
-package com.example.proyectoappv3
+package com.example.proyectoappv3.DocenteP
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectoappv3.PantallaPrincipal
+import com.example.proyectoappv3.R
 
 class Registro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

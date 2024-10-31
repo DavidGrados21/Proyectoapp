@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectoappv3.AlummnoP.InicioSesionE
+import com.example.proyectoappv3.DocenteP.InicioSesionD
 
 
 class PantallaPrincipal : AppCompatActivity() {

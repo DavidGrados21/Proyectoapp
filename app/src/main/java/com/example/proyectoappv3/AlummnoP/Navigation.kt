@@ -1,10 +1,14 @@
-package com.example.proyectoappv3
+package com.example.proyectoappv3.AlummnoP
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectoappv3.databinding.NavigationBinding
 import androidx.fragment.app.Fragment
+import com.example.proyectoappv3.R
+import com.example.proyectoappv3.fragAlumnos.Frag1
+import com.example.proyectoappv3.fragAlumnos.Frag2
+import com.example.proyectoappv3.fragAlumnos.Frag3
+import com.example.proyectoappv3.fragAlumnos.Frag4
 
 class navigation : AppCompatActivity () {
 
@@ -13,6 +17,8 @@ class navigation : AppCompatActivity () {
         super.onCreate(savedInstanceState)
         binding = NavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        reemplazaFragment(Frag1())
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {

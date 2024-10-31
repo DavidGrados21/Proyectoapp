@@ -6,22 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context=".Frag4">
+    tools:context=".fragAlumnos.Frag4">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="165dp"
+        android:layout_width="413dp"
+        android:layout_height="146dp"
         android:alpha="0.5"
         android:background="@drawable/borde"
-        app:srcCompat="@drawable/rectangulo_arriba"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/borde" />
 
     <ImageView
         android:id="@+id/upn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:contentDescription="logo de la app"
         app:layout_constraintStart_toStartOf="parent"

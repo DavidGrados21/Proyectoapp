@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
+    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -50,5 +53,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    //implementation ("com.google.android.material:material:1.12.0")
 }

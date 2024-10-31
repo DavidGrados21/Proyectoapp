@@ -1,23 +1,43 @@
-package com.example.proyectoappv3
+package com.example.proyectoappv3.AlummnoP
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectoappv3.DB.DBAlumnos
+import com.example.proyectoappv3.R
 
 class RegistroE : AppCompatActivity() {
+    private lateinit var dbHelper: DBAlumnos
+    private var selectedCareer: String? = null
+    private var selectedCycle: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registro_e)
 
+        dbHelper = DBAlumnos(this)
+
         val spinner1: Spinner = findViewById(R.id.SpCarrera2)
         val spinner2: Spinner = findViewById(R.id.SpCiclo2)
         val etFechaNacimiento = findViewById<EditText>(R.id.TxtFecha2)
+
+        val btnRegistrar = findViewById<Button>(R.id.btnRegistrar)
+        val nombre = findViewById<EditText>(R.id.txtNombre2)
+        val correo = findViewById<EditText>(R.id.txtCorreo2)
+        val clave = findViewById<EditText>(R.id.TxtPass2)
+
+        val registrar = findViewById<Button>(R.id.btnRegistrar)
+
+
 
         // Cuando el EditText es presionado, se muestra el DatePicker
         etFechaNacimiento.setOnClickListener {
@@ -93,17 +113,36 @@ class RegistroE : AppCompatActivity() {
 
         spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCareer = options1[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+        spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                selectedCycle = options2[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
 
-        spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-            }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
+        registrar.setOnClickListener {
+            val name = nombre.text.toString()
+            val email = correo.text.toString()
+            val password = clave.text.toString()
+            val fechaNacimiento = etFechaNacimiento.text.toString()
+
+            // Llamar al método insertUser
+            try {
+                dbHelper.insertAlumno(name, password, email, selectedCareer!!, selectedCycle!!, fechaNacimiento)
+                Toast.makeText(this, "Usuario insertado correctamente", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, InicioSesionE::class.java)
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error al insertar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
