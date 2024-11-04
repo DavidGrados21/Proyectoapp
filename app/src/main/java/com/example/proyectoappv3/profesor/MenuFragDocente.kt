@@ -1,41 +1,31 @@
-package com.example.proyectoappv3.AlummnoP
+package com.example.proyectoappv3.profesor
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.proyectoappv3.databinding.NavigationBinding
 import androidx.fragment.app.Fragment
 import com.example.proyectoappv3.R
-import com.example.proyectoappv3.fragAlumnos.Frag1
-import com.example.proyectoappv3.fragAlumnos.Frag2
-import com.example.proyectoappv3.fragAlumnos.Frag3
-import com.example.proyectoappv3.fragAlumnos.Frag4
+import com.example.proyectoappv3.fragDocente.Frag1D
+import com.example.proyectoappv3.fragDocente.Frag2D
+import com.example.proyectoappv3.databinding.MenuFragDocenteBinding
 
-class navigation : AppCompatActivity () {
 
-    private lateinit var binding: NavigationBinding
+class MenuFragDocente : AppCompatActivity() {
+    private lateinit var binding: MenuFragDocenteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = NavigationBinding.inflate(layoutInflater)
+        binding = MenuFragDocenteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        reemplazaFragment(Frag1())
+        reemplazaFragment(Frag1D())
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    reemplazaFragment(Frag1())
+                    reemplazaFragment(Frag1D())
                     true
                 }
                 R.id.cuenta -> {
-                    reemplazaFragment(Frag2())
-                    true
-                }
-                R.id.ubicacion -> {
-                    reemplazaFragment(Frag3())
-                    true
-                }
-                R.id.notificaciones -> {
-                    reemplazaFragment(Frag4())
+                    reemplazaFragment(Frag2D())
                     true
                 }
                 else -> false
@@ -48,5 +38,4 @@ class navigation : AppCompatActivity () {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-
 }

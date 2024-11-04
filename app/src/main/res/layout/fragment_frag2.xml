@@ -64,12 +64,12 @@
                 android:padding="16dp">
 
                 <!-- Imagen de perfil circular -->
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/foto_usuario"
+                    android:background="@drawable/placeholder"
                     android:scaleType="centerCrop"
                     android:layout_marginBottom="10dp"/>
 
@@ -110,7 +110,6 @@
                     android:layout_marginTop="4dp"
                     android:text="Teléfono: ...." />
 
-                <!-- Logos de redes sociales -->
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -156,11 +155,11 @@
                     android:text="Promedio: ...." />
 
                 <TextView
-                    android:id="@+id/semestre"
+                    android:id="@+id/ciclo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Semestre: ...." />
+                    android:text="Ciclo: ...." />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -174,8 +173,6 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="0dp">
-
-
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

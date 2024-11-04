@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.proyectoappv3.AlummnoP.navigation
+import com.example.proyectoappv3.alumnop.MenuFragEstudiantes
 import com.example.proyectoappv3.databinding.FragveriBinding
 
 class Fragverificacion : Fragment() {
@@ -27,8 +28,10 @@ class Fragverificacion : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnContinuar.setOnClickListener {
-            val intent = Intent(requireActivity(), navigation::class.java)
+            val intent = Intent(requireActivity(), MenuFragEstudiantes::class.java)
             startActivity(intent)
+
+            Toast.makeText(context, "TODO CORRECTO", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -29,29 +29,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <TextView
-        android:id="@+id/textoinicial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/aristotelica"
-        android:gravity="center"
-        android:text="Estudiante"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textoprincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/aristotelica"
         android:gravity="center"
         android:text="Asistencias"
-        android:textSize="40sp"
+        android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,18 +67,16 @@
                 android:layout_height="wrap_content"
                 android:text="Cursos"
                 android:textSize="30sp"
+                android:layout_marginStart="6dp"
                 android:textStyle="bold"/>
 
             <ImageView
                 android:layout_width="90dp"
                 android:layout_height="90dp"
+                android:layout_marginStart="6dp"
                 android:src="@drawable/libro1" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-    <!-- Historial de Asistencias -->
-
-    <!-- Cuadro de Asistencias -->
 
     <TextView
         android:id="@+id/tv_historial"
@@ -122,25 +108,12 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Curso: "
-                android:textSize="16sp"/>
+            <LinearLayout
+                android:id="@+id/cursos_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Asistencias: "
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hora: "
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

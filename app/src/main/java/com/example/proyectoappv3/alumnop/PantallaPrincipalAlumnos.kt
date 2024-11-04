@@ -1,4 +1,4 @@
-package com.example.proyectoappv3.AlummnoP
+package com.example.proyectoappv3.alumnop
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

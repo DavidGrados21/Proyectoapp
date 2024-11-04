@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".DocenteP.Registro">
+    tools:context=".profesor.Registro">
 
     <ImageView
         android:id="@+id/upn"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_margin="10dp"
-        android:contentDescription="logo de la app"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -21,7 +20,7 @@
         android:id="@+id/textoprincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/aristotelica"
         android:gravity="center"
         android:text="Crea una nueva cuenta"
@@ -35,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="@font/dmsans"
         android:gravity="center"
         android:text="¿Ya te has registrado?"
@@ -48,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="210dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="@font/dmsans"
         android:gravity="center"
         android:text="Ingresa aquí."
@@ -60,13 +59,13 @@
         android:id="@+id/txtNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/dmsans"
         android:gravity="center"
         android:text=" N O M B R E"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtsubprincipal1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtsubprincipal1" />
 
     <EditText
         android:id="@+id/txtNombre2"
@@ -111,7 +110,7 @@
         android:id="@+id/txtPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/dmsans"
         android:gravity="center"
         android:text=" C L A V E"
@@ -159,6 +158,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtFecha" />
 
+    <TextView
+        android:id="@+id/txtNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/dmsans"
+        android:gravity="center"
+        android:text=" T E L E F O N O "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TxtFecha2" />
+
+    <EditText
+        android:id="@+id/txtNumero2"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border2"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Introduce tu numero"
+        android:inputType="text"
+        android:paddingStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtNumero" />
+
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="320dp"
@@ -166,6 +192,7 @@
         android:backgroundTint="@color/black"
         android:text="Ingresar"
         android:textSize="25sp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TxtFecha2" />

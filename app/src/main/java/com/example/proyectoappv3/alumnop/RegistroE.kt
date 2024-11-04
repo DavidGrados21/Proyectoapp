@@ -1,4 +1,4 @@
-package com.example.proyectoappv3.AlummnoP
+package com.example.proyectoappv3.alumnop
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -12,7 +12,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.proyectoappv3.DB.DBAlumnos
+import com.example.proyectoappv3.SQLite.DB.DBAlumnos
 import com.example.proyectoappv3.R
 
 class RegistroE : AppCompatActivity() {

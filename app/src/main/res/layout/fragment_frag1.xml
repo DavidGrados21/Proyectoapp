@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context=".AlummnoP.PantallaPrincipalAlumnos">
+    tools:context=".alumnop.PantallaPrincipalAlumnos">
 
 
     <!-- imagen circular -->
@@ -24,26 +24,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/borde" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imagenUsuario"
         android:layout_width="77dp"
-        android:layout_height="69dp"
-        android:background="@drawable/foto_usuario"
+        android:layout_height="77dp"
+        android:background="@drawable/placeholder"
         android:layout_marginStart="25dp"
         android:layout_marginTop="35dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- iconos HORAS-->
-
-    <ImageView
-        android:id="@+id/imagenConfiguracion"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/circunferencia"
-        android:layout_margin= "10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/txtNombre"
@@ -57,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/textViewCorreo"
+        android:id="@+id/txtCorreo"
         android:layout_width="224dp"
         android:layout_height="18dp"
         android:layout_marginStart="117dp"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".DocenteP.InicioSesionD">
+    tools:context=".profesor.InicioSesionD">
 
     <ImageView
         android:id="@+id/upn"
@@ -38,7 +38,6 @@
         android:layout_marginTop="76dp"
         android:background="@drawable/borde"
         android:ems="14"
-        android:fontFamily="@font/aristotelica"
         android:hint="Hola@sitioincreible.com"
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
@@ -52,7 +51,6 @@
         android:layout_width="292dp"
         android:layout_height="48dp"
         android:hint="Contraseña"
-        android:fontFamily="@font/aristotelica"
         android:ems="14"
         android:inputType="textEmailAddress"
         android:layout_marginTop="10dp"
