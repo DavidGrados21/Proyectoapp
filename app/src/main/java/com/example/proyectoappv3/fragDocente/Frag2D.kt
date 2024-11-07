@@ -13,11 +13,12 @@ import com.squareup.picasso.Picasso
 
 class Frag2D : Fragment() {
 
-    private lateinit var imagenUsuario: ImageView
+    private lateinit var imagenprof: ImageView
     private lateinit var txtNombre: TextView
     private lateinit var txtFecha: TextView
     private lateinit var txtCorreo: TextView
     private lateinit var txtTelefono: TextView
+    private lateinit var btnedit: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,11 +27,12 @@ class Frag2D : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.frag2d, container, false)
 
-        imagenUsuario = view.findViewById(R.id.profile_image)
+        imagenprof = view.findViewById(R.id.profile_image)
         txtNombre = view.findViewById(R.id.profesor)
         txtFecha = view.findViewById(R.id.fecha)
         txtCorreo = view.findViewById(R.id.correo)
         txtTelefono = view.findViewById(R.id.telefono)
+        btnedit = view.findViewById(R.id.imgedit)
 
         val profe = UserSession.currentTeacher
 
@@ -41,12 +43,21 @@ class Frag2D : Fragment() {
 
         val imageUrl = profe?.foto ?: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqVg_URh9Mvrm3NYaTlCUyiM7r382ohELc1g&s"
 
+        btnedit.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, FragEditDatos())
+                .addToBackStack(null)
+                .commit()
+        }
 
-        // Carga de imagen
-        Picasso.get()
-            .load(imageUrl)
-            .error(R.drawable.placeholder) // Asegúrate de tener un drawable de marcador de posición
-            .into(imagenUsuario)
+        try {
+            Picasso.get()
+                .load(imageUrl)
+                .error(R.drawable.placeholder)
+                .into(imagenprof)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
 
         return view

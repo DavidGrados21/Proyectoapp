@@ -83,4 +83,34 @@ class DBAlumnos(context: Context) : DBHelper(context) {
 
         return alumno
     }
+
+    fun actualizarAlumno(
+        id: Int?,
+        nombre: String,
+        password: String,
+        correo: String,
+        carrera: String,
+        ciclo: String,
+        fechaNacimiento: String,
+        foto: String?
+    ): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put("nombre", nombre)
+            put("correo", correo)
+            put("clave", password)
+            put("carrera", carrera)
+            put("ciclo", ciclo)
+            put("fecha_nacimiento", fechaNacimiento)
+            put("foto", foto)
+        }
+        return db.update(
+            TABLE_ALUMNOS,
+            contentValues,
+            "id = ?",
+            arrayOf(id.toString())
+        ).also {
+            db.close()
+        }
+    }
 }

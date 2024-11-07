@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     tools:context=".fragDocente.FragEditDatos">
-
     <ImageView
         android:id="@+id/upn"
         android:layout_width="100dp"
@@ -23,37 +22,11 @@
         android:layout_marginTop="80dp"
         android:fontFamily="@font/aristotelica"
         android:gravity="center"
-        android:text="Crea una nueva cuenta"
+        android:text="Edita tu cuenta"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtsubprincipal1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/dmsans"
-        android:gravity="center"
-        android:text="¿Ya te has registrado?"
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textoprincipal" />
-
-    <TextView
-        android:id="@+id/txtsubprincipal2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/dmsans"
-        android:gravity="center"
-        android:text="Ingresa aquí."
-        android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textoprincipal" />
 
     <TextView
         android:id="@+id/txtNombre"
@@ -65,7 +38,7 @@
         android:text=" N O M B R E"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtsubprincipal1" />
+        app:layout_constraintTop_toBottomOf="@+id/textoprincipal" />
 
     <EditText
         android:id="@+id/txtNombre2"
@@ -186,13 +159,13 @@
         app:layout_constraintTop_toTopOf="@+id/txtNumero" />
 
     <Button
-        android:id="@+id/btnRegistrar"
+        android:id="@+id/btnGC"
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:backgroundTint="@color/black"
-        android:text="Ingresar"
+        android:text="Guardar cambios"
         android:textSize="25sp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TxtFecha2" />

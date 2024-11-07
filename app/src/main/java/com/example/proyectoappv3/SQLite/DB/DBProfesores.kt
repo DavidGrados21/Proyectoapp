@@ -84,4 +84,34 @@ class DBProfesores (context: Context) : DBHelper(context) {
         return profesor
     }
 
+    fun actualizarProfesor(
+        id: Int?,
+        nombre: String,
+        correo: String,
+        clave: String,
+        fechaNacimiento: String,
+        telefono: String,
+        foto: String?
+    ): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put("nombre", nombre)
+            put("correo", correo)
+            put("clave", clave)
+            put("fecha_nacimiento", fechaNacimiento)
+            put("telefono", telefono)
+            put("foto", foto)
+        }
+
+        // Actualiza el registro y devuelve la cantidad de filas afectadas
+        return db.update(
+            "profesores",
+            contentValues,
+            "id = ?",
+            arrayOf(id.toString())
+        ).also {
+            db.close() // Cierra la conexión después de la operación
+        }
+    }
+
 }

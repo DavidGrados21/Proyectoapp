@@ -1,43 +1,49 @@
-package com.example.proyectoappv3.alumnop
+package com.example.proyectoappv3.fragAlumnos
 
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.proyectoappv3.SQLite.DB.DBAlumnos
 import com.example.proyectoappv3.R
+import com.example.proyectoappv3.SQLite.DB.DBAlumnos
+import com.example.proyectoappv3.UserSession
+import com.example.proyectoappv3.alumnop.InicioSesionE
 
-class RegistroE : AppCompatActivity() {
+class FragEditAlumnno : Fragment() {
+
     private lateinit var dbHelper: DBAlumnos
     private var selectedCareer: String? = null
     private var selectedCycle: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.registro_e)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        dbHelper = DBAlumnos(requireContext())
+        val view = inflater.inflate(R.layout.fragment_edit_alumnno, container, false)
 
-        dbHelper = DBAlumnos(this)
+        val alumno = UserSession.currentUser
+        val txtNombre = view.findViewById<TextView>(R.id.txtNombre2)
+        val txtCorreo = view.findViewById<TextView>(R.id.txtCorreo2)
+        val txtPass = view.findViewById<TextView>(R.id.TxtPass2)
+        val txtFecha = view.findViewById<EditText>(R.id.TxtFecha2)
+        val spinner1: Spinner = view.findViewById(R.id.SpCarrera2)
+        val spinner2: Spinner = view.findViewById(R.id.SpCiclo2)
+        val actualizar = view.findViewById<Button>(R.id.btnRegistrar)
 
-        val spinner1: Spinner = findViewById(R.id.SpCarrera2)
-        val spinner2: Spinner = findViewById(R.id.SpCiclo2)
-        val etFechaNacimiento = findViewById<EditText>(R.id.TxtFecha2)
-        val nombre = findViewById<EditText>(R.id.txtNombre2)
-        val correo = findViewById<EditText>(R.id.txtCorreo2)
-        val clave = findViewById<EditText>(R.id.TxtPass2)
-        val registrar = findViewById<Button>(R.id.btnRegistrar)
-
-
-        // Cuando el EditText es presionado, se muestra el DatePicker
-        etFechaNacimiento.setOnClickListener {
-            mostrarDatePicker(etFechaNacimiento)
+        txtFecha.setOnClickListener {
+            mostrarDatePicker(txtFecha)
         }
 
         val options1 = listOf(
@@ -101,10 +107,10 @@ class RegistroE : AppCompatActivity() {
             "Ciclo 10"
         )
 
-        val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options1)
+        val adapter1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, options1)
         spinner1.adapter = adapter1
 
-        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options2)
+        val adapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, options2)
         spinner2.adapter = adapter2
 
         spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -124,23 +130,33 @@ class RegistroE : AppCompatActivity() {
             }
         }
 
+        actualizar.setOnClickListener {
+            val name = txtNombre.text.toString()
+            val email = txtCorreo.text.toString()
+            val password = txtPass.text.toString()
+            val fechaNacimiento = txtFecha.text.toString()
+            val id = alumno?.id
+            val foto = alumno?.foto
 
-        registrar.setOnClickListener {
-            val name = nombre.text.toString()
-            val email = correo.text.toString()
-            val password = clave.text.toString()
-            val fechaNacimiento = etFechaNacimiento.text.toString()
-
-            // Llamar al método insertUser
             try {
-                dbHelper.insertAlumno(name, password, email, selectedCareer!!, selectedCycle!!, fechaNacimiento)
-                Toast.makeText(this, "Usuario insertado correctamente", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, InicioSesionE::class.java)
+                dbHelper.actualizarAlumno(id, name, password, email, selectedCareer!!, selectedCycle!!, fechaNacimiento, foto)
+                Toast.makeText(requireContext(), "Usuario actualizado correctamente", Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), InicioSesionE::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
-                Toast.makeText(this, "Error al insertar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error al actualizar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+
+
         }
+
+        txtNombre.text = alumno?.nombre
+        txtCorreo.text = alumno?.correo
+        txtPass.text = alumno?.password
+        txtFecha.setText(alumno?.fechaNacimiento)
+        selectedCareer = alumno?.carrera
+        selectedCycle = alumno?.ciclo
+        return view
     }
     private fun mostrarDatePicker(etFecha: EditText) {
         // Obtener la fecha actual
@@ -150,8 +166,7 @@ class RegistroE : AppCompatActivity() {
         val dia = calendario.get(Calendar.DAY_OF_MONTH)
 
         // Crear el DatePickerDialog
-        val datePicker = DatePickerDialog(
-            this,
+        val datePicker = DatePickerDialog(requireContext(),
             { _, anioSeleccionado, mesSeleccionado, diaSeleccionado ->
                 // Al seleccionar una fecha, mostrarla en el EditText
                 val fechaSeleccionada = "$diaSeleccionado/${mesSeleccionado + 1}/$anioSeleccionado"
@@ -163,4 +178,5 @@ class RegistroE : AppCompatActivity() {
         // Mostrar el DatePickerDialog
         datePicker.show()
     }
+
 }

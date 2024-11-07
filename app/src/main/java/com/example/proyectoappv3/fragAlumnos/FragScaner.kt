@@ -10,14 +10,19 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.proyectoappv3.Fragverificacion
 import com.example.proyectoappv3.R
+
+import com.example.proyectoappv3.SQLite.DB.DBAsistencia
+import com.example.proyectoappv3.UserSession
 import com.google.zxing.ResultPoint
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.BarcodeView
+import org.json.JSONObject
 
 class FragScaner : Fragment() {
 
     // Variables para las vistas
+    private lateinit var dbHelper: DBAsistencia
     private lateinit var txtCodigoqr: TextView
     private lateinit var barcodeView: BarcodeView
 
@@ -35,6 +40,10 @@ class FragScaner : Fragment() {
         // Iniciar escaneo de forma automática al abrir el fragmento
         iniciarEscaneo()
 
+
+        dbHelper = DBAsistencia(requireContext())
+
+
         return view
     }
 
@@ -45,11 +54,30 @@ class FragScaner : Fragment() {
             override fun barcodeResult(result: BarcodeResult) {
                 txtCodigoqr.text = "Código QR escaneado: ${result.text}"
 
-                if (result.text == "23345") {
-                    cambiarFragmento()
+                // Parsear el contenido del QR (en formato JSON)
+                val qrContent = result.text
+                val qrValues = parseQRCode(qrContent)
+                val alumno = UserSession.currentUser
+
+
+                // Extraer los valores del QR
+                val idCurso = qrValues["idcurso"] as? Int
+                val codigoQR = qrValues["codigo"] as? Int
+                val fechaQR = qrValues["fecha"] as? String
+                val userId = alumno?.id
+
+                if (userId != null && idCurso != null && codigoQR != null && fechaQR != null) {
+                    // Validar las condiciones antes de registrar la asistencia
+                    dbHelper.validarYRegistrarAsistencia(idCurso, codigoQR, fechaQR, userId)
                 } else {
-                    Toast.makeText(context, "Código no reconocido. Intente de nuevo.", Toast.LENGTH_SHORT).show()
-                    requireActivity().supportFragmentManager.popBackStack() // Destruir el fragmento actual
+                    val mensajeError = when {
+                        userId == null -> "Error: usuario no válido."
+                        idCurso == null -> "Error: curso no válido."
+                        codigoQR == null -> "Error: código QR no válido."
+                        fechaQR == null -> "Error: fecha de QR no válida."
+                        else -> "Código QR inválido. Intente de nuevo."
+                    }
+                    Toast.makeText(context, mensajeError, Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -68,6 +96,31 @@ class FragScaner : Fragment() {
         transaction.replace(R.id.fragment_container, fragVerificacion) // Asegúrate de que el ID sea correcto
         transaction.addToBackStack(null) // Permitir volver al fragmento anterior
         transaction.commit()
+    }
+
+    private fun parseQRCode(qrContent: String): Map<String, Any> {
+        val result = mutableMapOf<String, Any>()
+
+        try {
+            // Convertir el contenido del QR (JSON) a un objeto JSONObject
+            val jsonObject = JSONObject(qrContent)
+
+            // Extraer los valores del JSON
+            val idCurso = jsonObject.getInt("idcurso")
+            val codigo = jsonObject.getInt("codigo")
+            val fecha = jsonObject.getString("fecha")
+
+            // Guardar los valores en un mapa
+            result["idcurso"] = idCurso
+            result["codigo"] = codigo
+            result["fecha"] = fecha
+
+        } catch (e: Exception) {
+            // En caso de error con el formato JSON
+            println("Error al parsear el QR: ${e.message}")
+        }
+
+        return result
     }
 
     override fun onPause() {

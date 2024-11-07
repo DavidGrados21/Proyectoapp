@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.SQLite.DB.DBCurso
 import com.example.proyectoappv3.UserSession
+import com.example.proyectoappv3.fragDocente.FragEditDatos
 import com.squareup.picasso.Picasso
 import kotlin.random.Random
 
@@ -23,6 +24,7 @@ class Frag2 : Fragment() {
     private lateinit var txtMaterias: TextView
     private lateinit var txtPromedio: TextView
     private lateinit var txtCiclo: TextView
+    private lateinit var btnedit: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +41,7 @@ class Frag2 : Fragment() {
         txtMaterias = view.findViewById(R.id.materias)
         txtPromedio = view.findViewById(R.id.promedio)
         txtCiclo = view.findViewById(R.id.ciclo)
+        btnedit = view.findViewById(R.id.imgedit)
 
         val alumno = UserSession.currentUser
         val dbCurso = DBCurso(requireContext())
@@ -73,6 +76,13 @@ class Frag2 : Fragment() {
             .load(imageUrl)
             .error(R.drawable.placeholder) // Asegúrate de tener un drawable de marcador de posición
             .into(imagenUsuario)
+
+        btnedit.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, FragEditAlumnno())
+                .addToBackStack(null)
+                .commit()
+        }
 
         return view
     }

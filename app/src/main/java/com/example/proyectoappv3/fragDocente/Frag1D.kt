@@ -16,7 +16,8 @@ import com.example.proyectoappv3.com.example.proyectoappv3.SQLite.DB.DBHorario
 class Frag1D : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflar el layout del fragmento
