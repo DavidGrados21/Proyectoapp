@@ -10,11 +10,13 @@ import com.example.proyectoappv3.SQLite.DB.DBAlumnos
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.RecuperarClave
 import com.example.proyectoappv3.UserSession
+import com.example.proyectoappv3.VerificacionCorreo
 
 class InicioSesionE : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inicio_sesion_e)
+
 
         val txtCorreo = findViewById<EditText>(R.id.TxtCorreo)
         val txtPassword = findViewById<EditText>(R.id.TxtPass)
@@ -24,7 +26,8 @@ class InicioSesionE : AppCompatActivity() {
         val btnLogin = findViewById<TextView>(R.id.btnLogin)
 
         registrarte.setOnClickListener {
-            val explicitIntent = Intent(this, RegistroE::class.java)
+            val explicitIntent = Intent(this, VerificacionCorreo::class.java)
+            explicitIntent.putExtra("tipo", "E")
             startActivity(explicitIntent)
         }
 

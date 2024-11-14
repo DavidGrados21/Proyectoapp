@@ -11,14 +11,12 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.SQLite.DB.DBProfesores
-import com.example.proyectoappv3.SQLite.DB.DropboxHelper
 import com.example.proyectoappv3.UserSession
 import com.example.proyectoappv3.profesor.InicioSesionD
 
 
 class FragEditDatos : Fragment() {
     private lateinit var dbHelper: DBProfesores
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

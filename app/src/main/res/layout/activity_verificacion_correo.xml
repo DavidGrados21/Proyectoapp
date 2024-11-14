@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".VerificacionCorreo">
+
+
+    <ImageView
+        android:id="@+id/upn"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="logo"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textoprincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/aristotelica"
+        android:gravity="center"
+        android:text="Crea tu cuenta"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dmsans"
+        android:gravity="center"
+        android:text=" C O R R E O  E L E C T R O N I C O"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoprincipal" />
+
+    <EditText
+        android:id="@+id/txtNombre2"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border2"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="hola@unsitiogenial.es"
+        android:paddingStart="12dp"
+        android:autofillHints="emailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtNombre" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/black"
+        android:text="VERIFICAR"
+        android:textSize="25dp"
+        android:layout_marginBottom="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

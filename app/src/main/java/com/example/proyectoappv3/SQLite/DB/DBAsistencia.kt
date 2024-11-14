@@ -2,7 +2,7 @@ package com.example.proyectoappv3.SQLite.DB
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.widget.Toast
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -12,10 +12,7 @@ class DBAsistencia(context: Context) : DBHelper(context) {
     private val db: SQLiteDatabase = readableDatabase
 
     fun validarYRegistrarAsistencia (idCurso: Int, codigoQR: Int, fechaQR: String, userId: Int) {
-        // Obtener la fecha y hora actuales
         val currentDateTime = getCurrentDateTime()
-
-        // Verificar si el código ya fue usado (Condición 1)
         val cursor = db.rawQuery(
             """
             SELECT * FROM $TABLE_ASISTENCIAS 
@@ -66,6 +63,78 @@ class DBAsistencia(context: Context) : DBHelper(context) {
         }
         cursor.close()
     }
+
+    fun getCantidadAsistenciasAlumnoCurso(alumnoId: Int, cursoId: Int): Int {
+        var cantidadAsistencias = 0
+
+        // Consulta SQL para contar las asistencias de un alumno en un curso específico
+        val query = """
+        SELECT COUNT(*) as cantidad
+        FROM $TABLE_ASISTENCIAS
+        WHERE usuario_id = ? AND curso_id = ?
+        """.trimIndent()
+
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query, arrayOf(alumnoId.toString(), cursoId.toString()))
+
+        // Obtener el resultado
+        if (cursor.moveToFirst()) {
+            cantidadAsistencias = cursor.getInt(cursor.getColumnIndexOrThrow("cantidad"))
+        }
+        cursor.close()
+
+        return cantidadAsistencias
+    }
+
+    fun getCursoIdByName(nombreCurso: String): Int? {
+        var cursoId: Int? = null
+
+        // Consulta SQL para obtener el id del curso a partir de su nombre
+        val query = """
+        SELECT id
+        FROM $TABLE_CURSOS
+        WHERE nombre_curso = ?
+    """.trimIndent()
+
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query, arrayOf(nombreCurso))
+
+        // Verificar si hay un resultado
+        if (cursor.moveToFirst()) {
+            cursoId = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+        }
+        cursor.close()
+
+        return cursoId
+    }
+
+    fun getAlumnoIdByName(nombreAlumno: String): Int? {
+        var alumnoId: Int? = null
+
+        // Consulta SQL para obtener el id del alumno a partir de su nombre
+        val query = """
+        SELECT id
+        FROM $TABLE_ALUMNOS
+        WHERE nombre = ?
+    """.trimIndent()
+
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query, arrayOf(nombreAlumno))
+
+        // Verificar si hay un resultado
+        if (cursor.moveToFirst()) {
+            alumnoId = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+        }
+        cursor.close()
+
+        return alumnoId
+    }
+
+
+
+
+
+
 
     private fun getCurrentDateTime(): String {
         // Obtener la fecha y hora actuales en formato 'yyyy-MM-dd HH:mm:ss'

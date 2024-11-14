@@ -23,6 +23,7 @@ class RegistroE : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registro_e)
+        val email21 = intent.getStringExtra("email")
 
         dbHelper = DBAlumnos(this)
 
@@ -33,6 +34,7 @@ class RegistroE : AppCompatActivity() {
         val correo = findViewById<EditText>(R.id.txtCorreo2)
         val clave = findViewById<EditText>(R.id.TxtPass2)
         val registrar = findViewById<Button>(R.id.btnRegistrar)
+        correo.setText(email21)
 
 
         // Cuando el EditText es presionado, se muestra el DatePicker

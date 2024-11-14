@@ -3,7 +3,6 @@ package com.example.proyectoappv3.SQLite.DB
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
-import com.example.proyectoappv3.SQLite.DB.Entidades.Alumno
 import com.example.proyectoappv3.SQLite.DB.Entidades.Profesor
 
 class DBProfesores (context: Context) : DBHelper(context) {

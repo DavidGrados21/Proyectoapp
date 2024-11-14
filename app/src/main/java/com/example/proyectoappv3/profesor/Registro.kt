@@ -19,6 +19,7 @@ class Registro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registro)
+        val email21 = intent.getStringExtra("email")
 
         dbHelper = DBProfesores(this)
 
@@ -29,6 +30,8 @@ class Registro : AppCompatActivity() {
         val correo = findViewById<EditText>(R.id.txtCorreo2)
         val clave = findViewById<EditText>(R.id.TxtPass2)
         val telefono = findViewById<EditText>(R.id.txtNumero2)
+
+        correo.setText(email21)
 
         btnRegistrar.setOnClickListener {
             val name = nombre.text.toString()

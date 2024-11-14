@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.proyectoappv3"
-        minSdk = 34
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -49,6 +49,8 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.dropbox.core:dropbox-core-sdk:4.0.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

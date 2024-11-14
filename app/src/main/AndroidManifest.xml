@@ -19,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAppV3">
         <activity
+            android:name=".VerificarCode"
+            android:exported="false" />
+        <activity
+            android:name=".VerificacionCorreo"
+            android:exported="false" />
+        <activity
             android:name=".profesor.MenuFragDocente"
             android:exported="false" />
         <activity

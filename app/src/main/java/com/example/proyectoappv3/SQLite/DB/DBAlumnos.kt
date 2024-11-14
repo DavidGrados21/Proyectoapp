@@ -18,12 +18,11 @@ class DBAlumnos(context: Context) : DBHelper(context) {
     ): Long {
         var id: Long = 0
 
-        // Usa un bloque try con recursos para manejar la base de datos
         writableDatabase.use { db ->
             val values = ContentValues().apply {
                 put("nombre", nombre)
                 put("correo", correo)
-                put("clave", password) // Asegúrate de que la clave sea la columna correcta
+                put("clave", password)
                 put("carrera", carrera)
                 put("ciclo", ciclo)
                 put("fecha_nacimiento", fechaNacimiento)
@@ -52,6 +51,7 @@ class DBAlumnos(context: Context) : DBHelper(context) {
             false
         }
     }
+
 
     fun obtenerDatosUsuario(correo: String): Alumno? {
         var alumno: Alumno? = null

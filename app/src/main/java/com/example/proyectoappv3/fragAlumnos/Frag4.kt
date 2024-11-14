@@ -56,21 +56,35 @@ class Frag4 : Fragment() {
                 setPadding(16, 16, 16, 16)
             }
 
-            // Crea los TextViews para el curso y asistencias
             val tvCurso = TextView(requireContext()).apply {
                 text = "Curso: $curso"
                 textSize = 16f
             }
 
-            val cantidadAsistencias = dbAsistencia.obtenerCantidadAsistencias(estudiante, curso)
+            val idcurso = dbAsistencia.getCursoIdByName(curso)
+            val idalumno = dbAsistencia.getAlumnoIdByName(estudiante)
+
+            val cantidadAsistencias = if (idcurso != null && idalumno != null) {
+                dbAsistencia.getCantidadAsistenciasAlumnoCurso(idalumno, idcurso)
+            } else {
+                0
+            }
+
+            val cnatidadFaltas = 16 - cantidadAsistencias
 
             val tvAsistencias = TextView(requireContext()).apply {
                 text = "Asistencias: $cantidadAsistencias"
                 textSize = 16f
             }
 
+            val tvFaltas = TextView(requireContext()).apply {
+                text = "Faltas: $cnatidadFaltas"
+                textSize = 16f
+            }
+
             layout.addView(tvCurso)
             layout.addView(tvAsistencias)
+            layout.addView(tvFaltas)
 
             cardView.addView(layout)
 

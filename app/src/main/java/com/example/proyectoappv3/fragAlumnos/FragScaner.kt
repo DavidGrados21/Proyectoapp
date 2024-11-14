@@ -47,6 +47,7 @@ class FragScaner : Fragment() {
         return view
     }
 
+    // Función para iniciar el escaneo
     private fun iniciarEscaneo() {
         // Mostrar la cámara y comenzar el escaneo
         barcodeView.visibility = View.VISIBLE
@@ -54,16 +55,14 @@ class FragScaner : Fragment() {
             override fun barcodeResult(result: BarcodeResult) {
                 txtCodigoqr.text = "Código QR escaneado: ${result.text}"
 
-                // Parsear el contenido del QR (en formato JSON)
                 val qrContent = result.text
                 val qrValues = parseQRCode(qrContent)
                 val alumno = UserSession.currentUser
 
-
-                // Extraer los valores del QR
+                // Extraer los valores del QR, usando el campo correcto para fecha
                 val idCurso = qrValues["idcurso"] as? Int
                 val codigoQR = qrValues["codigo"] as? Int
-                val fechaQR = qrValues["fecha"] as? String
+                val fechaQR = qrValues["fecha_vencimiento"] as? String // Cambiado a "fecha_vencimiento"
                 val userId = alumno?.id
 
                 if (userId != null && idCurso != null && codigoQR != null && fechaQR != null) {
@@ -87,16 +86,6 @@ class FragScaner : Fragment() {
         barcodeView.resume() // Iniciar la cámara
     }
 
-    private fun cambiarFragmento() {
-        // Crear una instancia del nuevo fragmento
-        val fragVerificacion = Fragverificacion()
-
-        // Obtener el fragment manager y realizar la transacción
-        val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragVerificacion) // Asegúrate de que el ID sea correcto
-        transaction.addToBackStack(null) // Permitir volver al fragmento anterior
-        transaction.commit()
-    }
 
     private fun parseQRCode(qrContent: String): Map<String, Any> {
         val result = mutableMapOf<String, Any>()
@@ -108,12 +97,12 @@ class FragScaner : Fragment() {
             // Extraer los valores del JSON
             val idCurso = jsonObject.getInt("idcurso")
             val codigo = jsonObject.getInt("codigo")
-            val fecha = jsonObject.getString("fecha")
+            val fechaVencimiento = jsonObject.getString("fecha_vencimiento") // Cambiado a "fecha_vencimiento"
 
             // Guardar los valores en un mapa
             result["idcurso"] = idCurso
             result["codigo"] = codigo
-            result["fecha"] = fecha
+            result["fecha_vencimiento"] = fechaVencimiento // Cambiado a "fecha_vencimiento"
 
         } catch (e: Exception) {
             // En caso de error con el formato JSON
@@ -122,6 +111,7 @@ class FragScaner : Fragment() {
 
         return result
     }
+
 
     override fun onPause() {
         super.onPause()
