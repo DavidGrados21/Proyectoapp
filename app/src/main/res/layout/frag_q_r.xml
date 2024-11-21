@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
-    tools:context=".fragAlumnos.FragScaner">
+    tools:context=".com.example.proyectoappv3.profesor.FragQR">
 
     <ImageView
         android:id="@+id/imageView"
@@ -35,30 +35,20 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/aristotelica"
         android:gravity="center"
-        android:text="Escanear QR"
+        android:text="QR"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.journeyapps.barcodescanner.BarcodeView
-        android:id="@+id/barcode_scanner"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="160dp"
+    <ImageView
+        android:id="@+id/ImageQR"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="25dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <FrameLayout
-        android:id="@+id/contenedor_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,6 @@ import java.util.Locale
 
 class DBHorario (context: Context) : DBHelper(context){
 
-    private val db: SQLiteDatabase = readableDatabase
-
     fun obtenerHoraInicioCurso(nombreCurso: String): String? {
         val db = this.readableDatabase
         val query = """
@@ -38,5 +36,25 @@ class DBHorario (context: Context) : DBHelper(context){
 
         return horaInicio
     }
+
+    fun obtenerDiaCurso(nombreCurso: String): String? {
+        val db = this.readableDatabase
+        val query = """
+        SELECT h.dia
+        FROM horarios AS h
+        INNER JOIN cursos ON h.curso_id = cursos.id
+        WHERE cursos.nombre_curso = ?
+    """
+
+        // Usamos un bloque `use` para manejar la base de datos y el cursor automáticamente
+        db.rawQuery(query, arrayOf(nombreCurso)).use { cursor ->
+            if (cursor.moveToFirst()) {
+                // Obtener el valor de "dia" y asignarlo a la variable horaInicio
+                return cursor.getString(cursor.getColumnIndexOrThrow("dia"))
+            }
+        }
+        return null
+    }
+
 
 }

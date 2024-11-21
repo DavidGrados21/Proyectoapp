@@ -2,4 +2,6 @@
 <resources>
     <item name="textViewsiguenteClase" type="id" />
     <item name="textViewNombrecurso" type="id" />
+    <item name="textViewHoras" type="id" />
+    <item name="btnGC" type="id" />
 </resources>

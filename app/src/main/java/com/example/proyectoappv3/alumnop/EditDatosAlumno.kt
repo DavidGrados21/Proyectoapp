@@ -1,13 +1,9 @@
-package com.example.proyectoappv3.fragAlumnos
+package com.example.proyectoappv3.com.example.proyectoappv3.alumnop
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.icu.util.Calendar
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -15,32 +11,36 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.SQLite.DB.DBAlumnos
 import com.example.proyectoappv3.UserSession
 import com.example.proyectoappv3.alumnop.InicioSesionE
+import java.util.Calendar
 
-class FragEditAlumnno : Fragment() {
+class EditDatosAlumno : AppCompatActivity() {
 
     private lateinit var dbHelper: DBAlumnos
     private var selectedCareer: String? = null
     private var selectedCycle: String? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dbHelper = DBAlumnos(requireContext())
-        val view = inflater.inflate(R.layout.fragment_edit_alumnno, container, false)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        dbHelper = DBAlumnos(this)
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.edit_datos_alumno)
+
 
         val alumno = UserSession.currentUser
-        val txtNombre = view.findViewById<TextView>(R.id.txtNombre2)
-        val txtCorreo = view.findViewById<TextView>(R.id.txtCorreo2)
-        val txtPass = view.findViewById<TextView>(R.id.TxtPass2)
-        val txtFecha = view.findViewById<EditText>(R.id.TxtFecha2)
-        val spinner1: Spinner = view.findViewById(R.id.SpCarrera2)
-        val spinner2: Spinner = view.findViewById(R.id.SpCiclo2)
-        val actualizar = view.findViewById<Button>(R.id.btnRegistrar)
+        val txtNombre = findViewById<TextView>(R.id.txtNombre2)
+        val txtCorreo = findViewById<TextView>(R.id.txtCorreo2)
+        val txtPass = findViewById<TextView>(R.id.TxtPass2)
+        val txtFecha = findViewById<EditText>(R.id.TxtFecha2)
+        val spinner1: Spinner = findViewById(R.id.SpCarrera2)
+        val spinner2: Spinner = findViewById(R.id.SpCiclo2)
+        val actualizar = findViewById<Button>(R.id.btnRegistrar)
 
         txtFecha.setOnClickListener {
             mostrarDatePicker(txtFecha)
@@ -93,7 +93,6 @@ class FragEditAlumnno : Fragment() {
             "Comunicación",
             "Comunicación y Marketing Digital"
         )
-
         val options2 = listOf(
             "Ciclo 1",
             "Ciclo 2",
@@ -107,10 +106,10 @@ class FragEditAlumnno : Fragment() {
             "Ciclo 10"
         )
 
-        val adapter1 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, options1)
+        val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options1)
         spinner1.adapter = adapter1
 
-        val adapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, options2)
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options2)
         spinner2.adapter = adapter2
 
         spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -140,11 +139,11 @@ class FragEditAlumnno : Fragment() {
 
             try {
                 dbHelper.actualizarAlumno(id, name, password, email, selectedCareer!!, selectedCycle!!, fechaNacimiento, foto)
-                Toast.makeText(requireContext(), "Usuario actualizado correctamente", Toast.LENGTH_SHORT).show()
-                val intent = Intent(requireContext(), InicioSesionE::class.java)
+                Toast.makeText(this, "Usuario actualizado correctamente", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, InicioSesionE::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Error al actualizar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al actualizar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
             }
 
 
@@ -156,7 +155,6 @@ class FragEditAlumnno : Fragment() {
         txtFecha.setText(alumno?.fechaNacimiento)
         selectedCareer = alumno?.carrera
         selectedCycle = alumno?.ciclo
-        return view
     }
     private fun mostrarDatePicker(etFecha: EditText) {
         // Obtener la fecha actual
@@ -166,7 +164,7 @@ class FragEditAlumnno : Fragment() {
         val dia = calendario.get(Calendar.DAY_OF_MONTH)
 
         // Crear el DatePickerDialog
-        val datePicker = DatePickerDialog(requireContext(),
+        val datePicker = DatePickerDialog(this,
             { _, anioSeleccionado, mesSeleccionado, diaSeleccionado ->
                 // Al seleccionar una fecha, mostrarla en el EditText
                 val fechaSeleccionada = "$diaSeleccionado/${mesSeleccionado + 1}/$anioSeleccionado"
@@ -175,7 +173,7 @@ class FragEditAlumnno : Fragment() {
             anio, mes, dia
         )
 
-        // Mostrar el DatePickerDialog
+
         datePicker.show()
     }
 

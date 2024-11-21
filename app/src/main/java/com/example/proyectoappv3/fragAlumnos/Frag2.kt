@@ -1,5 +1,6 @@
 package com.example.proyectoappv3.fragAlumnos
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.proyectoappv3.com.example.proyectoappv3.alumnop.EditDatosAlumno
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.SQLite.DB.DBCurso
 import com.example.proyectoappv3.UserSession
-import com.example.proyectoappv3.fragDocente.FragEditDatos
 import com.squareup.picasso.Picasso
 import kotlin.random.Random
 
@@ -78,10 +79,8 @@ class Frag2 : Fragment() {
             .into(imagenUsuario)
 
         btnedit.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FragEditAlumnno())
-                .addToBackStack(null)
-                .commit()
+            val intent = Intent(requireContext(), EditDatosAlumno::class.java)
+            startActivity(intent)
         }
 
         return view

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo2"
-    tools:context=".fragAlumnos.FragScaner">
+    android:background="@drawable/fondo_d"
+    tools:context=".com.example.proyectoappv3.profesor.OpcionesClase">
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,37 +29,48 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
+
     <TextView
         android:id="@+id/textoprincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:fontFamily="@font/aristotelica"
         android:gravity="center"
-        android:text="Escanear QR"
+        android:text="Curso"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.journeyapps.barcodescanner.BarcodeView
-        android:id="@+id/barcode_scanner"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="160dp"
+    <Button
+        android:id="@+id/btnAsistencias"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Ver Asistencias"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btnQR"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Generar codigo QR"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAsistencias"  />
 
     <FrameLayout
-        android:id="@+id/contenedor_fragment"
+        android:id="@+id/fragmentContainerD"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,8 @@
 package com.example.proyectoappv3.SQLite.DB.Entidades
 
-class Curso {
-    var id: Int = 0
-    var nombreCurso: String? = null
-    var profesorId: Int = 0
-    var salon: String? = null
-}
+data class Curso(
+    var id: Int = 0,
+    var nombreCurso: String,
+    var profesorId: Int,
+    var salon: String
+)

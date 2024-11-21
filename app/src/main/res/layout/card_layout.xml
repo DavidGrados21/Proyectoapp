@@ -26,5 +26,12 @@
             android:textSize="18sp"
             android:text="HORA DE INICIO:" />
 
+        <TextView
+            android:id="@+id/txtDia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="DIA:" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.proyectoappv3.com.example.proyectoappv3.profesor.OpcionesClase
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.SQLite.DB.DBCurso
 import com.example.proyectoappv3.UserSession
@@ -40,11 +41,23 @@ class Frag1D : Fragment() {
             val cardView = LayoutInflater.from(context).inflate(R.layout.card_layout, containerCursos, false) as CardView
             val txtCurso = cardView.findViewById<TextView>(R.id.txtCurso)
             val txtHora = cardView.findViewById<TextView>(R.id.txtHora)
+            val txtDia = cardView.findViewById<TextView>(R.id.txtDia)
 
             // Asignar el texto a las vistas de la tarjeta
             txtCurso.text = "CURSO: $curso"
             val horaInicio = dbh.obtenerHoraInicioCurso(curso)
-            txtHora.text = "HORA DE INICIO: $horaInicio" // Aquí puedes asignar la hora real
+            val dia = dbh.obtenerDiaCurso(curso)
+            txtHora.text = "HORA DE INICIO: $horaInicio"
+            txtDia.text = "DIA: $dia"
+
+            cardView.setOnClickListener {
+                val curso = dbc.obtenerDatosCurso(curso)
+                UserSession.currentCourse = curso
+
+                val explicitIntent = android.content.Intent(requireContext(), OpcionesClase::class.java)
+                startActivity(explicitIntent)
+
+            }
 
             // Definir parámetros para el cardView
             val params = ConstraintLayout.LayoutParams(

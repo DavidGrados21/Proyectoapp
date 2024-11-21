@@ -6,7 +6,6 @@ import android.util.Log
 import com.example.proyectoappv3.SQLite.DB.Entidades.Alumno
 
 class DBAlumnos(context: Context) : DBHelper(context) {
-    private val context: Context = context
 
     fun insertAlumno(
         nombre: String,
@@ -52,7 +51,6 @@ class DBAlumnos(context: Context) : DBHelper(context) {
         }
     }
 
-
     fun obtenerDatosUsuario(correo: String): Alumno? {
         var alumno: Alumno? = null
 
@@ -84,6 +82,22 @@ class DBAlumnos(context: Context) : DBHelper(context) {
         return alumno
     }
 
+    fun getAlumnoIdByName(nombre: String): Int? {
+        var userId: Int? = null
+        readableDatabase.use { db ->
+            val query = "SELECT id FROM $TABLE_ALUMNOS WHERE nombre = ?"
+            db.rawQuery(query, arrayOf(nombre)).use { cursor ->
+
+                if (cursor.moveToFirst()) {
+                    userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+                }
+                cursor.close()
+                return userId
+            }
+        }
+    }
+
+
     fun actualizarAlumno(
         id: Int?,
         nombre: String,
@@ -112,5 +126,39 @@ class DBAlumnos(context: Context) : DBHelper(context) {
         ).also {
             db.close()
         }
+    }
+
+    fun obtenerNombresDeAlumnos(cursoId: Int): List<String> {
+        val nombres = mutableListOf<String>()
+
+        // Definir la consulta SQL para obtener solo los nombres de los estudiantes en un curso
+        val query = """
+        SELECT a.nombre
+        FROM $TABLE_ALUMNOS a
+        JOIN $TABLE_INSCRIPCIONES i ON a.id = i.usuario_id
+        WHERE i.curso_id = ?
+    """
+
+        val db = readableDatabase
+        val cursor = db.rawQuery(query, arrayOf(cursoId.toString()))
+
+        if (cursor.moveToFirst()) {
+            val columnIndex = cursor.getColumnIndex("nombre")
+            if (columnIndex != -1) {
+                do {
+                    val nombre = cursor.getString(columnIndex)
+                    nombres.add(nombre)
+                } while (cursor.moveToNext())
+            } else {
+                Log.e("SQLite", "La columna 'nombre' no se encuentra en la consulta.")
+            }
+        } else {
+            Log.e("SQLite", "No se encontraron resultados en la consulta.")
+        }
+
+        cursor.close()
+        db.close()
+
+        return nombres
     }
 }

@@ -8,7 +8,7 @@ open class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NOMBR
 {
 
     companion object {
-        private const val DATABASE_VERSION = 13
+        private const val DATABASE_VERSION = 15
         private const val DATABASE_NOMBRE = "t2.db"
 
         const val TABLE_ALUMNOS = "alumnos"
@@ -118,7 +118,6 @@ open class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NOMBR
                 + "$COLUMN_ASISTENCIA_CURSO_ID INTEGER NOT NULL,"
                 + "$COLUMN_ASISTENCIA_CODIGO INTEGER NOT NULL,"
                 + "$COLUMN_ASISTENCIA_FECHA TEXT NOT NULL,"
-                + "$COLUMN_ASISTENCIA_FECHA_VENCIMIENTO TEXT NOT NULL,"
                 + "FOREIGN KEY ($COLUMN_ASISTENCIA_USUARIO_ID) REFERENCES $TABLE_ALUMNOS($COLUMN_USER_ID),"
                 + "FOREIGN KEY ($COLUMN_ASISTENCIA_CURSO_ID) REFERENCES $TABLE_CURSOS($COLUMN_COURSE_ID),"
                 + "UNIQUE ($COLUMN_ASISTENCIA_USUARIO_ID, $COLUMN_ASISTENCIA_CODIGO))")
@@ -152,17 +151,16 @@ open class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NOMBR
 
     private fun insertInitialData(sqLiteDatabase: SQLiteDatabase) {
         // Inserciones iniciales en la tabla alumnos
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Katherine Lisbeth', 'n00287214@upn.pe', 'clave10321', '955170293', 'https://media.discordapp.net/attachments/1046432412848115753/1304072517828476938/foto_kat.jpg?ex=672e0fac&is=672cbe2c&hm=5fe0dac0fb247592181f24e6924f958961871360f1d21e64f6502149718dbdec&=&format=webp&width=480&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 8', '2001-03-10')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Laura Thalia', 'n00269668@upn.pe', 'clave191221', '930942464', 'https://media.discordapp.net/attachments/1046432412848115753/1304072518088265818/foto_lau.jpg?ex=672e0fac&is=672cbe2c&hm=07393aed2e4755f8f6085628123649fb9135a3453af7d105615d81352c19cce5&=&format=webp&width=473&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 8', '2001-12-19')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Yeimy Paola', 'n00297845@upn.pe', 'clave250602', '978180909', 'https://media.discordapp.net/attachments/1046432412848115753/1304072518088265818/foto_lau.jpg?ex=672e0fac&is=672cbe2c&hm=07393aed2e4755f8f6085628123649fb9135a3453af7d105615d81352c19cce5&=&format=webp&width=473&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 9', '2002-06-25')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Carlos Cesar', 'n00273106@upn.pe', 'clave290204', '969754586', 'https://media.discordapp.net/attachments/1046432412848115753/1304072518709149726/foto_carlos.jpg?ex=672e0fac&is=672cbe2c&hm=c87209afd1b8490fc14af36c92ee551c0182ccdc1bc7cfa8773a743b68f7160c&=&format=webp&width=480&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 9', '2004-02-29')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Cleiner Nilson', 'n00207290@upn.pe', 'clave290204', '970276517', 'https://media.discordapp.net/attachments/1046432412848115753/1304072519044567060/foto_cleines.jpg?ex=672e0fad&is=672cbe2d&hm=595c319f16a5a9ef05df50e143edc190a46df40e3e6c63da39fdfb29233aeea2&=&format=webp&width=478&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 9', '2001-08-30')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Angel Manuel', 'n00319747@upn.pe', 'clave170699', '915947314', 'https://media.discordapp.net/attachments/1046432412848115753/1304072519313133660/foto_angel.jpg?ex=672e0fad&is=672cbe2d&hm=8dc9dcf0d8a4ed7bac56f49b160e353d916ec88be0eee2358d5315a9c58c7407&=&format=webp&width=640&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 8', '1999-06-17')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Katherine Lisbeth', 'n00287214@upn.pe', 'clave10321', '955170293', 'https://media.discordapp.net/attachments/1046432412848115753/1304072517828476938/foto_kat.jpg?ex=673de1ac&is=673c902c&hm=6bb7f3b5a0f783623a27cceaa0fb7c00b04b2f0fddc97895e13d1fe5dcf6a45f&=&format=webp&width=480&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 8', '2001-03-10')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Laura Thalia', 'n00269668@upn.pe', 'clave191221', '930942464', 'https://media.discordapp.net/attachments/1046432412848115753/1304072518088265818/foto_lau.jpg?ex=673de1ac&is=673c902c&hm=d6d672e19e01e78e5eea9059d0c4be5569e667df4785bfbed67b1b134a1ad7cb&=&format=webp&width=473&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 8', '2001-12-19')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Yeimy Paola', 'n00297845@upn.pe', 'clave250602', '978180909', 'https://media.discordapp.net/attachments/1046432412848115753/1304072518344249414/foto_pao.jpg?ex=673de1ac&is=673c902c&hm=57e2b353bb7ed8ead579fac2cb67275b7ea275a5ec82cae459197992f2431211&=&format=webp&width=476&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 9', '2002-06-25')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Carlos Cesar', 'n00273106@upn.pe', 'clave290204', '969754586', 'https://media.discordapp.net/attachments/1046432412848115753/1304072518709149726/foto_carlos.jpg?ex=673de1ac&is=673c902c&hm=0b0546893275da4d48d3329d7252ec892b5c6cf483622f8ded8e38644d3823a0&=&format=webp&width=480&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 9', '2004-02-29')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Cleiner Nilson', 'n00207290@upn.pe', 'clave290204', '970276517', 'https://media.discordapp.net/attachments/1046432412848115753/1304072519044567060/foto_cleines.jpg?ex=673de1ad&is=673c902d&hm=971fda7853b9e71ccbe7cad67278d83553e1289a474cdf1c5c386b4a1393c964&=&format=webp&width=478&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 9', '2001-08-30')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ALUMNOS (nombre, correo, clave, telefono, foto, carrera, ciclo, fecha_nacimiento) VALUES ('Angel Manuel', 'n00319747@upn.pe', 'clave170699', '915947314', 'https://media.discordapp.net/attachments/1046432412848115753/1304072519313133660/foto_angel.jpg?ex=673de1ad&is=673c902d&hm=5e1a0f488228b23bf7295b2976404adecd72632f4365ff632416dce0f2a64ceb&=&format=webp&width=640&height=480', 'Ingeniería de Sistemas Computacionales', 'Ciclo 8', '1999-06-17')")
 
         // Inserciones iniciales en la tabla profesores
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_PROFESORES (nombre, correo, clave, fecha_nacimiento, foto, telefono) VALUES ('ROLANDO JAVIER', 'rolando.berru@upn.edu.pe', 'prof1990', '1990-11-24', '', '')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_PROFESORES (nombre, correo, clave, fecha_nacimiento, foto, telefono) VALUES ('MITCHELL PAULO', 'mitchell.blancas@upn.pe', 'prof1989', '1989-01-26', '', '')")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_PROFESORES (nombre, correo, clave, fecha_nacimiento, foto, telefono) VALUES ('Jorge Ricardo', 'Jorge.Ricardo@upn.pe', 'prof1973', '1973-01-25', '', '')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_PROFESORES (nombre, correo, clave, fecha_nacimiento, foto, telefono) VALUES ('ROLANDO JAVIER', 'rolando.berru@upn.edu.pe', 'prof1990', '1990-11-24', 'https://media.discordapp.net/attachments/1046432412848115753/1308595453427978240/profRolando.jpeg?ex=673e83fc&is=673d327c&hm=7e3f46472f726ee6375fbebca80a135cba02ca4404bcffe574567deb1e3dec24&=&format=webp', '')")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_PROFESORES (nombre, correo, clave, fecha_nacimiento, foto, telefono) VALUES ('MITCHELL PAULO', 'mitchell.blancas@upn.pe', 'prof1989', '1989-01-26', 'https://media.discordapp.net/attachments/1046432412848115753/1308595453146824755/profMitchell.jpg?ex=673e83fc&is=673d327c&hm=e0cb18c439a518ce7dd088ad2aa77d950a5d119e5eafa0cce971af06d1bbe3b3&=&format=webp&width=480&height=480', '')")
 
         // Insertar registros iniciales en cursos
         sqLiteDatabase.execSQL("INSERT INTO $TABLE_CURSOS (nombre_curso, profesor_id, salon) VALUES ('DESARROLLO DE APLICACIONES MÓVILES 9094', 2, 'LRED1')")
@@ -188,11 +186,11 @@ open class DBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NOMBR
         sqLiteDatabase.execSQL("INSERT INTO $TABLE_HORARIOS (curso_id, dia, hora_inicio) VALUES (4, 'Lunes', '14:30:00');")
 
         // Insertar registros iniciales en asistencias
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha, fecha_vencimiento) VALUES (1, 1, 1, '2023-11-22 17:55:00', '2023-11-22 18:00:00');")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha, fecha_vencimiento) VALUES (1, 1, 2, '2023-11-29 18:00:00', '2023-11-29 18:00:00');")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha, fecha_vencimiento) VALUES (1, 3, 3, '2023-11-21 09:13:00', '2023-11-21 09:20:00');")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha, fecha_vencimiento) VALUES (1, 3, 4, '2023-11-28 09:15:00', '2023-11-28 09:20:00');")
-        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha, fecha_vencimiento) VALUES (1, 3, 5, '2023-11-14 09:10:00', '2023-11-14 09:20:00');")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha) VALUES (1, 1, 1, '2023-11-22 17:55:00');")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha) VALUES (1, 1, 2, '2023-11-29 18:00:00');")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha) VALUES (1, 3, 3, '2023-11-21 09:13:00');")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha) VALUES (1, 3, 4, '2023-11-28 09:15:00');")
+        sqLiteDatabase.execSQL("INSERT INTO $TABLE_ASISTENCIAS (usuario_id, curso_id, codigo, fecha) VALUES (1, 3, 5, '2023-11-14 09:10:00');")
 
     }
 }

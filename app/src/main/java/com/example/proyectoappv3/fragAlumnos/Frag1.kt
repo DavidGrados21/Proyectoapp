@@ -11,12 +11,17 @@ import androidx.cardview.widget.CardView
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.UserSession
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 class Frag1 : Fragment() {
 
     private lateinit var txtNombre: TextView
     private lateinit var txtCorreo: TextView
+    private lateinit var textViewHours: TextView
+    private lateinit var textViewMinutes: TextView
     private lateinit var imagenUsuario: ImageView
 
     override fun onCreateView(
@@ -28,17 +33,21 @@ class Frag1 : Fragment() {
 
         // Inicializar las vistas
         txtNombre = view.findViewById(R.id.txtNombre)
-        txtCorreo = view.findViewById(R.id.txtCorreo) // Asegúrate de que este TextView esté en tu layout
-        imagenUsuario = view.findViewById(R.id.imagenUsuario) // Asegúrate de que este ImageView esté en tu layout
+        txtCorreo = view.findViewById(R.id.txtCorreo)
+        imagenUsuario = view.findViewById(R.id.imagenUsuario)
+        textViewHours = view.findViewById(R.id.textViewHours)
+        textViewMinutes= view.findViewById(R.id.textViewMinutes)
 
-        // Configurar el CardView para navegar a FragScaner
+        val calendar = Calendar.getInstance()
+
         val cardViewQR: CardView = view.findViewById(R.id.cardViewQR)
         cardViewQR.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FragScaner())
+                .replace(R.id.fragmentContainerE, FragScaner())
                 .addToBackStack(null)
                 .commit()
         }
+
 
         // Obtener los datos del usuario de la sesión
         val alumno = UserSession.currentUser
@@ -50,7 +59,16 @@ class Frag1 : Fragment() {
             .load(imageUrl)
             .into(imagenUsuario)
 
-        return view // Devolver la vista inflada
+        val hourFormat = SimpleDateFormat("hh", Locale.getDefault())
+        val currentHour = hourFormat.format(calendar.time)
+
+        val minuteFormat = SimpleDateFormat("mm ", Locale.getDefault())
+        val currentMinute = minuteFormat.format(calendar.time)
+
+        textViewHours.text = "$currentHour horas"
+        textViewMinutes.text = "$currentMinute minutos"
+
+        return view
     }
 }
 

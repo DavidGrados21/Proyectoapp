@@ -23,12 +23,8 @@ class Frag4 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Infla el layout para este fragmento
         val view = inflater.inflate(R.layout.fragment_frag4, container, false)
-
-        // Inicializa el contenedor para los cursos
         val cursosContainer: LinearLayout = view.findViewById(R.id.cursos_container)
-
 
         val alumno = UserSession.currentUser
         val dbCurso = DBCurso(requireContext())

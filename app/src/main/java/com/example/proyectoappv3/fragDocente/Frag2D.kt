@@ -1,5 +1,6 @@
 package com.example.proyectoappv3.fragDocente
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.proyectoappv3.R
 import com.example.proyectoappv3.UserSession
+import com.example.proyectoappv3.com.example.proyectoappv3.EditDatosProfe
 import com.squareup.picasso.Picasso
 
 class Frag2D : Fragment() {
@@ -44,10 +46,9 @@ class Frag2D : Fragment() {
         val imageUrl = profe?.foto ?: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqVg_URh9Mvrm3NYaTlCUyiM7r382ohELc1g&s"
 
         btnedit.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FragEditDatos())
-                .addToBackStack(null)
-                .commit()
+
+            val intent = Intent(requireContext(), EditDatosProfe::class.java)
+            startActivity(intent)
         }
 
         try {

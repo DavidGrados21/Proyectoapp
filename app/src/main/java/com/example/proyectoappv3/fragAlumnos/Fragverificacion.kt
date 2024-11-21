@@ -1,4 +1,4 @@
-package com.example.proyectoappv3
+package com.example.proyectoappv3.com.example.proyectoappv3.fragAlumnos
 
 import android.content.Intent
 import android.os.Bundle

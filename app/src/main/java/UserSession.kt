@@ -7,5 +7,6 @@ import com.example.proyectoappv3.SQLite.DB.Entidades.Profesor
 object UserSession {
     var currentUser: Alumno? = null
     var currentTeacher: Profesor? = null
+    var currentCourse: Curso? = null
 
 }

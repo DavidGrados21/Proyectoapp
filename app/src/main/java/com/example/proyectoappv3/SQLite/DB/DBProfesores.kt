@@ -6,11 +6,7 @@ import android.util.Log
 import com.example.proyectoappv3.SQLite.DB.Entidades.Profesor
 
 class DBProfesores (context: Context) : DBHelper(context) {
-    private val context: Context
 
-    init {
-        this.context = context
-    }
     fun insertProfesor(
         nombre: String,
         password: String,
